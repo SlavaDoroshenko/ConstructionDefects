@@ -38,3 +38,8 @@
 ### Use-case
 
 <img src="img_for_readme/USECASE.drawio.png"/>
+
+### User-story
+
+#### Инженер
+<img src="img_for_readme/user-story-engenery.jpg"/>
