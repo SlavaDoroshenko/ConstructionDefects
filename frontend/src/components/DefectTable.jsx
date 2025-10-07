@@ -46,23 +46,6 @@ const columns = ({ onImageClick }) => [
   },
   { field: "description", headerName: "Описание", flex: 1 },
   { field: "location", headerName: "Местоположение", flex: 1 },
-  {
-    field: "status",
-    headerName: "Статус",
-    width: 120,
-    renderCell: (params) => (
-      <Chip
-        label={params.value}
-        color={
-          params.value === "Исправлен"
-            ? "success"
-            : params.value === "Новый"
-            ? "warning"
-            : "default"
-        }
-      />
-    ),
-  },
 ];
 
 export default function DefectTable({ defects, onImageClick }) {
