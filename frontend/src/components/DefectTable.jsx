@@ -1,8 +1,10 @@
+// src/components/DefectTable.jsx
 import { DataGrid } from "@mui/x-data-grid";
 import { Chip, Box } from "@mui/material";
+import { useNavigate } from "react-router-dom"; // ← добавь это
 
 const columns = ({ onImageClick }) => [
-  { field: "id", headerName: "ID", width: 10 },
+  { field: "id", headerName: "ID", width: 80 },
   {
     field: "photoUrl",
     headerName: "Фото",
@@ -39,7 +41,10 @@ const columns = ({ onImageClick }) => [
             cursor: "pointer",
             borderRadius: "4px",
           }}
-          onClick={() => onImageClick(url)}
+          onClick={(e) => {
+            e.stopPropagation(); // не срабатывал клик по строке
+            onImageClick(url);
+          }}
         />
       );
     },
@@ -49,6 +54,8 @@ const columns = ({ onImageClick }) => [
 ];
 
 export default function DefectTable({ defects, onImageClick }) {
+  const navigate = useNavigate(); // ← хук навигации
+
   return (
     <Box sx={{ height: "100%", width: "100%" }}>
       <DataGrid
@@ -61,7 +68,11 @@ export default function DefectTable({ defects, onImageClick }) {
             paginationModel: { pageSize: 5 },
           },
         }}
+        onRowClick={(params) => {
+          navigate(`/defects/${params.id}`);
+        }}
         disableRowSelectionOnClick
+        sx={{ cursor: "pointer" }} // курсор "рука" при наведении на строку
       />
     </Box>
   );
